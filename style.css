@@ -1,0 +1,257 @@
+/* ---------------------------- */
+/*             RESET            */
+/* ---------------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+/* Pseudo elements are also included since it is not automatically selected. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Calculating widths & heights easier */
+}
+
+/* Reset margins */
+/* Can be used to battle "collapsing margins" */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0;
+}
+
+
+/* Design requires no bold to be used. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    /* display: block; */
+    /* This element has been commented out, since the "hidden" attribute won't work when display block is enabled. */
+}
+
+/* Make forms elements easier to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    /* Default: font properties are not inherited for these elements */
+}
+
+/* Remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ---------------------------- */
+/*      CUSTOM PROPERTIES       */
+/* ---------------------------- */
+:root {
+    transition-behavior: allow-discrete;
+    /* Allow for discrete rules to be animatable. Copy this to the location where it is used. This property is not inherited.*/
+    interpolate-size: allow-keywords;
+    /* Allows for animating to height auto */
+
+    /* Primary color */
+    --clr-orange-500: 25deg 97% 53%;
+
+    /* Neutral color */
+    --clr-white: 0, 100%, 100%;
+    --clr-grey-500: 217, 12%, 63%;
+    --clr-grey-900: 213, 19%, 18%;
+    --clr-grey-950: 216, 12%, 8%;
+
+    --fs-p: 0.975rem;
+
+    --ff-Overpass: "Overpass", sans-serif;
+}
+
+/* ---------------------------- */
+/*       UTILITY CLASSES        */
+/* ---------------------------- */
+.hidden { display: none !important; }
+
+/* ---------------------------- */
+/*        PAGE SPECIFICS        */
+/* ---------------------------- */
+
+body {
+    min-height: 100vh;
+    background-color: hsl(var(--clr-grey-950));
+    font-family: var(--ff-Overpass);
+    color: hsl(var(--clr-white));
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1.5rem auto 1.5rem;
+    grid-template-areas: 
+        '. content .'
+        'footer footer footer'
+    ;
+    justify-items: center;
+}
+
+.container {
+    grid-area: content;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 28rem;
+    width: min(100%, 28rem);
+    background-image: linear-gradient(hsla(var(--clr-grey-900)), hsla(var(--clr-grey-950), 0.2));
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #202020;
+}
+
+.rate-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 2rem;
+}
+
+.rate-buttons > button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    width: clamp(45px, 4vw, 65px);
+    aspect-ratio: 1;
+    font-size: var(--fs-p);
+    background-color: hsl(var(--clr-grey-900));
+    text-align: center;
+    border-radius: 50%;
+    border: 0;
+    color: hsla(var(--clr-white), 0.6);
+}
+
+.rate-buttons > button:hover,
+.rate-buttons > button:focus {
+    background-color: hsl(var(--clr-orange-500));
+    color: hsl(var(--clr-grey-950));
+}
+
+.rate-buttons > button:active,
+.rate-buttons > button.active{
+    background-color: hsl(var(--clr-white));
+    color: hsl(var(--clr-grey-950));
+}
+
+/* Rating */
+    /* Header */
+.rating header img {
+    background-color: hsl(var(--clr-grey-900));
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+header h1 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    margin-block: 1rem;
+}
+
+
+.submit {
+    background-color: hsl(var(--clr-orange-500));
+    border: 0;
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
+}
+
+.submit:hover,
+.submit:focus {
+    background-color: hsl(var(--clr-white));
+}
+
+/* Thank you */
+.thank-you {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.thank-you header img {
+    width: 175px;
+    margin-block: 2rem;
+}
+
+.thank-you header p {
+    width: fit-content;
+    justify-self: center;
+    background-color: hsl(var(--clr-grey-900));
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    border-radius: 2rem;
+    color: hsl(var(--clr-orange-500));
+    opacity: 1;
+    font-weight: 200;
+    margin-bottom: 2rem;
+}
+
+.thank-you header h1 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+/* General */
+
+p {
+    font-size: var(--fs-p);
+    opacity: 0.6;
+}
+
+footer {
+    grid-area: footer;
+    align-self: bottom;
+    text-align: center;
+    
+    a,
+    a:visited {
+        text-decoration: none;
+        color: inherit;
+    };
+
+    a:hover,
+    a:focus {
+        color: hsl(var(--clr-orange-500));
+        opacity: 1;
+        text-decoration: underline;
+    }
+}
